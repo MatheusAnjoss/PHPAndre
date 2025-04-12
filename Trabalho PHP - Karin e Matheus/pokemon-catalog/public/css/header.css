@@ -1,0 +1,38 @@
+/* styles for header.php */
+.navbar {
+    background-color: red;
+    color: white;
+    padding: 5px 20px; /* Reduzido o padding para diminuir a altura */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 1.5rem; /* Reduzido o tamanho da fonte */
+}
+
+.navbar nav {
+    display: flex;
+    gap: 15px; /* Espaçamento entre os botões */
+}
+
+.navbar .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.navbar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-red {
+    background-color: red !important;
+}
+
+header {
+    background-color: red; /* Removido o !important para evitar conflitos */
+}

@@ -1,0 +1,58 @@
+/* detalhes.css */
+body {
+    background-image: url('../assets/fundodetalhe.png'); /* Corrigido o caminho */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    width: 22rem; /* Tamanho fixo dos cards */
+    height: 28rem; /* Altura fixa dos cards */
+    margin: 20px auto;
+    padding: 10px; /* Reduzido o padding para melhor ajuste */
+    text-align: center; /* Centralizar o texto dentro do card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Garante que o conteúdo fique bem distribuído */
+    align-items: center;
+}
+
+.card.pokemon-card {
+    height: auto !important; /* Permitir altura dinâmica para o card do Pokémon */
+    min-height: 32rem !important;  /* Garantir um tamanho mínimo maior para o card do Pokémon */
+}
+
+.card img {
+    width: 100%; /* Imagem ocupa toda a largura do card */
+    height: 70%; /* Altura fixa para caber no card */
+    object-fit: contain; /* Garante que a imagem se ajuste sem distorção */
+    border-radius: 8px; /* Bordas arredondadas para a imagem */
+}
+
+.card .card-body {
+    flex-grow: 1; /* Permite que o conteúdo do texto ocupe o espaço restante */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Posiciona o texto na parte inferior do card */
+    width: 100%; /* Garante que o texto ocupe toda a largura do card */
+}
+
+.row.justify-content-center {
+    display: flex;
+    flex-wrap: wrap; /* Permitir que os cards quebrem linha se necessário */
+    justify-content: center; /* Centralizar os cards no espaço disponível */
+    gap: 1.5rem; /* Espaçamento adicional entre os cards */
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}

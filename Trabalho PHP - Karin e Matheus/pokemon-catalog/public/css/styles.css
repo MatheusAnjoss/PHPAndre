@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('assets/florestafundo.jpg') no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: unset; /* Removido para evitar conflitos */
+    padding: 0; /* Certifique-se de que não há padding extra */
+    margin: 0; /* Certifique-se de que não há margens extras */
+}
+
+h1 {
+    color: #333;
+}
+
+nav {
+    margin: 20px 0;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.pokemon-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.pokemon-item {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 15px;
+    flex: 1 1 calc(30% - 20px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pokemon-item h2 {
+    font-size: 1.5em;
+    color: #ff6600;
+}
+
+.pokemon-item p {
+    color: #666;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    z-index: 1000; /* Garante que o footer fique acima de outros elementos */
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    padding: 10px 0;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    color: black;
+    z-index: 1000;
+}
+
+.btn-danger {
+    background-color: red;
+    border-color: red;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: darkred;
+    border-color: darkred;
+    color: white;
+}

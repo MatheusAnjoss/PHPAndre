@@ -1,0 +1,72 @@
+body {
+    background: url('../assets/fundoadm.avif') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+.btn-red {
+    background-color: red;
+    border-color: red;
+    color: white;
+}
+
+.btn-red:hover {
+    background-color: darkred;
+    border-color: darkred;
+    color: white;
+}
+
+.btn.btn-red {
+    background-color: red !important;
+    border-color: red !important;
+    color: white !important;
+}
+
+.btn.btn-red:hover {
+    background-color: darkred !important;
+    border-color: darkred !important;
+    color: white !important;
+}
+
+.type-list {
+    list-style: none;
+    padding: 0;
+}
+
+.type-list li {
+    display: inline-block;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.type-list li .remove-type {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: darkred;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.container {
+    margin-bottom: 100px; /* Add spacing to prevent footer overlap */
+}
+
+label, small, h1, p {
+    color: white; /* Ensure all text is white */
+}
+
+h1 {
+    color: white; /* Ensure the title has white font */
+}

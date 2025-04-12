@@ -1,0 +1,89 @@
+/* styles for pokedex.php */
+body {
+    background: url('https://preview.redd.it/brpwyr7og3wd1.jpeg?auto=webp&s=decf1f701736fe2424380402810aa85a8b4f67c0') no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+    color: white;
+    margin: 0;
+    height: 100%; /* Garante que o body ocupe toda a altura da janela */
+}
+
+/* Adicione esta regra para evitar que o header seja afetado */
+header.navbar {
+    background-color: red !important; /* Garante que o fundo do header seja vermelho */
+    position: relative; /* Mantém o comportamento esperado */
+    z-index: 1000; /* Garante que o header fique acima do conteúdo */
+}
+
+.pokedex {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    min-height: 400px; /* Altura mínima */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pokedex img {
+    max-width: 100%;
+    height: auto;
+}
+
+.pokemon-display {
+    position: absolute;
+    top: 25%;
+    left: 5%;
+    width: 350px;
+    height: 414px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-area {
+    position: absolute;
+    top: 35%;
+    right: 10%;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-area input {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    color: black;
+}
+
+.search-area input:focus {
+    outline: none;
+}
+
+.search-area input::placeholder {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.search-area button {
+    background: url('https://cdn-icons-png.flaticon.com/512/622/622669.png') no-repeat center center;
+    background-size: 20px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.pokedex-info {
+    margin-top: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: black;
+    text-align: center;
+}
