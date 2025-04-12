@@ -12,6 +12,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user'] !== 'adm') {
 }
 
 require_once(__DIR__ . '/../src/utils/dados.php');
+require_once(__DIR__ . '/../src/utils/funcoes.php');
 
 $pokemons = getPokemons();
 $validTypes = ['Normal', 'Fogo', 'Água', 'Elétrico', 'Grama', 'Gelo', 'Lutador', 'Venenoso', 'Terra', 'Voador', 'Psíquico', 'Inseto', 'Pedra', 'Fantasma', 'Dragão', 'Sombrio', 'Fada', 'Aço'];
@@ -23,29 +24,27 @@ if (isset($_SESSION['pokemons'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'] ?? '';
-    $types = $_POST['types'] ?? [];
-    $generation = $_POST['generation'] ?? '';
-    $pokedexNumber = $_POST['pokedex_number'] ?? '';
-    $image = $_POST['image'] ?? '';
-    $cardNew = $_POST['card_new'] ?? '';
-    $cardOld = $_POST['card_old'] ?? '';
-    $description = $_POST['description'] ?? '';
+    $name = sanitizeInput($_POST['name'] ?? '');
+    $types = array_map('sanitizeInput', $_POST['types'] ?? []);
+    $generation = sanitizeInput($_POST['generation'] ?? '');
+    $pokedexNumber = sanitizeInput($_POST['pokedex_number'] ?? '');
+    $image = sanitizeInput($_POST['image'] ?? '');
+    $cardNew = sanitizeInput($_POST['card_new'] ?? '');
+    $cardOld = sanitizeInput($_POST['card_old'] ?? '');
+    $description = sanitizeInput($_POST['description'] ?? '');
     $favorite = isset($_POST['favorite']) ? true : false;
 
-    if (!filter_var($image, FILTER_VALIDATE_URL) || !preg_match('/^https:\/\//', $image)) {
+    if (!isValidUrl($image)) {
         $error = 'A URL da imagem deve ser válida e começar com "https://".';
-    } elseif ($cardNew && !filter_var($cardNew, FILTER_VALIDATE_URL)) {
+    } elseif ($cardNew && !isValidUrl($cardNew)) {
         $error = 'A URL da carta nova deve ser válida, se fornecida.';
-    } elseif ($cardOld && !filter_var($cardOld, FILTER_VALIDATE_URL)) {
+    } elseif ($cardOld && !isValidUrl($cardOld)) {
         $error = 'A URL da carta velha deve ser válida, se fornecida.';
-    } elseif (!in_array((int)$generation, $validGenerations)) {
+    } elseif (!isValidValue((int)$generation, $validGenerations)) {
         $error = 'Selecione uma geração válida.';
-    } elseif (!is_numeric($pokedexNumber) || $pokedexNumber <= 0) {
-        $error = 'O número na Pokédex deve ser um número válido e maior que 0.';
     } elseif (count($types) > 2 || array_diff($types, $validTypes)) {
         $error = 'Selecione até 2 tipos válidos.';
-    } elseif (array_filter($pokemons, fn($p) => $p['name'] === $name || $p['pokedex_number'] == $pokedexNumber)) {
+    } elseif (pokemonExists($pokemons, $name, $pokedexNumber)) {
         $error = 'Já existe um Pokémon com o mesmo nome ou número na Pokédex.';
     } else {
         $newPokemon = [
