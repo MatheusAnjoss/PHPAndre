@@ -1,14 +1,16 @@
 <?php
 session_start();
 require_once '../src/utils/dados.php';
+require_once '../src/utils/funcoes.php'; // Adicionado para usar sanitizeInput
 
+// Verifique se o usuário está logado
 $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 
 $pokemons = array_merge(getPokemons(), $_SESSION['pokemons'] ?? []);
 
-$nameFilter = $_GET['name'] ?? '';
-$typeFilter = $_GET['type'] ?? '';
-$generationFilter = $_GET['generation'] ?? '';
+$nameFilter = sanitizeInput($_GET['name'] ?? '');
+$typeFilter = sanitizeInput($_GET['type'] ?? '');
+$generationFilter = sanitizeInput($_GET['generation'] ?? '');
 
 $filteredPokemons = array_filter($pokemons, function ($pokemon) use ($nameFilter, $typeFilter, $generationFilter) {
     $matchesName = !$nameFilter || stripos($pokemon['name'], $nameFilter) !== false;
@@ -17,6 +19,7 @@ $filteredPokemons = array_filter($pokemons, function ($pokemon) use ($nameFilter
     return $matchesName && $matchesType && $matchesGeneration;
 });
 
+// Lógica para excluir um Pokémon
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     $deleteId = $_POST['delete_id'];
     if (isset($_SESSION['pokemons'])) {
@@ -92,15 +95,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
                                 <p class="card-text">Tipo: <?= $pokemon['type'] ?></p>
                                 <p class="card-text">Número na Pokédex: <?= $pokemon['pokedex_number'] ?></p>
                                 <p class="card-text">Geração: <?= $pokemon['generation'] ?></p>
-                                <div class="button-group">
-                                    <a href="detalhes.php?id=<?= $pokemon['id'] ?>" class="btn btn-danger btn-sm">Ver mais</a>
-                                    <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
-                                        <form method="POST" style="display: inline;">
-                                            <input type="hidden" name="delete_id" value="<?= $pokemon['id'] ?>">
-                                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-                                        </form>
-                                    <?php endif; ?>
-                                </div>
+                                <form method="POST" style="display: inline;">
+                                    <input type="hidden" name="delete_id" value="<?= $pokemon['id'] ?>">
+                                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                                </form>
+                                <a href="detalhes.php?id=<?= $pokemon['id'] ?>" class="btn btn-danger btn-sm">Ver mais</a>
                             </div>
                         </div>
                     </div>
