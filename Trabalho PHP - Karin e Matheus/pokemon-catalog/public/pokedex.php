@@ -70,7 +70,7 @@ if (isset($_SESSION['pokemons'])) {
         </div>
         <div class="search-area">
             <form method="GET" style="display: flex; align-items: center;">
-                <input type="text" id="search" name="search" class="form-control" placeholder="Nome ou Número">
+                <input type="text" id="search" name="search" class="form-control" placeholder="Número na pokedéx">
                 <button type="submit"></button>
             </form>
             <?php
